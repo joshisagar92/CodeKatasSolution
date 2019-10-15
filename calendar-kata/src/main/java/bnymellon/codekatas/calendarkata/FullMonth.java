@@ -16,7 +16,9 @@
 
 package bnymellon.codekatas.calendarkata;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 
 import org.eclipse.collections.api.multimap.sortedset.SortedSetMultimap;
 import org.threeten.extra.LocalDateRange;
@@ -33,9 +35,9 @@ public class FullMonth extends CalendarWindow
      */
     public FullMonth(LocalDate forDate, SortedSetMultimap<LocalDate, Meeting> calendarMeetings)
     {
-        LocalDate start = null;
-        LocalDate end = null;
-        this.range = null;
+    	LocalDate start = forDate.with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate end = forDate.with(TemporalAdjusters.lastDayOfMonth()).plusDays(1);
+        this.range = LocalDateRange.of(start, end);
         this.meetings = calendarMeetings.selectKeysValues(
                 (date, meeting) ->
                         date.getMonth().equals(start.getMonth()) &&

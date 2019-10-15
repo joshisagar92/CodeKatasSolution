@@ -90,7 +90,7 @@ public class MyCalendar
         Interval interval = meeting.getInterval();
         final SortedSetIterable<Meeting> meetingsForDate = getMeetingsForDate(date);
         return meetingsForDate.collect(Meeting::getInterval)
-                .anySatisfyWith(Predicates2.equal(), interval);
+                .anySatisfy(interval::overlaps);
     }
 
     /**
