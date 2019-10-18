@@ -18,10 +18,12 @@ package bnymellon.codekatas.calendarkata;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 import org.eclipse.collections.api.multimap.sortedset.SortedSetMultimap;
+import org.threeten.extra.DayOfMonth;
 import org.threeten.extra.LocalDateRange;
 
 public class FullWeek extends CalendarWindow
@@ -37,8 +39,9 @@ public class FullWeek extends CalendarWindow
      */
     public FullWeek(LocalDate forDate, SortedSetMultimap<LocalDate, Meeting> calendarMeetings)
     {
-        LocalDate start = null;
-        this.range = null;
+        LocalDate start = forDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+        LocalDate end = start.plusDays(7);
+        this.range = LocalDateRange.of(start,end);
         this.meetings = calendarMeetings.selectKeysValues((date, meeting) -> this.range.contains(date));
     }
 
