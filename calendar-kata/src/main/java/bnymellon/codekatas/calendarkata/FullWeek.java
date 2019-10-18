@@ -39,9 +39,9 @@ public class FullWeek extends CalendarWindow
      */
     public FullWeek(LocalDate forDate, SortedSetMultimap<LocalDate, Meeting> calendarMeetings)
     {
-        LocalDate start = forDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
-        LocalDate end = start.plusDays(7);
-        this.range = LocalDateRange.of(start,end);
+      	LocalDate start = forDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+        LocalDate end = forDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)).plusDays(1);
+        this.range = LocalDateRange.of(start, end);
         this.meetings = calendarMeetings.selectKeysValues((date, meeting) -> this.range.contains(date));
     }
 
