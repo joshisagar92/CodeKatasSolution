@@ -37,7 +37,7 @@ public class WorkWeek extends CalendarWindow
      */
     public WorkWeek(LocalDate forDate, SortedSetMultimap<LocalDate, Meeting> calendarMeetings)
     {
-    	LocalDate start = forDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+      	LocalDate start = forDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         LocalDate end = forDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY)).plusDays(1);
         this.range = LocalDateRange.of(start, end);
         this.meetings = calendarMeetings.selectKeysValues((date, meeting) -> this.range.contains(date));

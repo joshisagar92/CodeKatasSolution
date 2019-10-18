@@ -148,7 +148,7 @@ public class MyCalendarTest
     public void getMeetingsForDate()
     {
         SortedSetIterable<Meeting> meetingsForJuly6 = this.calendar.getMeetingsForDate(LocalDate.of(2017, 7, 6));
-        Verify.assertSize(1, meetingsForJuly6);
+        Verify.assertSize(2, meetingsForJuly6);
         System.out.println(meetingsForJuly6);
     }
 
@@ -156,7 +156,7 @@ public class MyCalendarTest
     public void getMeetingsForWorkWeekOf()
     {
         final WorkWeek week = this.calendar.getMeetingsForWorkWeekOf(LocalDate.of(2017, 7, 6));
-        Assert.assertEquals(4, week.getNumberOfMeetings());
+        Assert.assertEquals(8, week.getNumberOfMeetings());
         System.out.println(week);
     }
 
@@ -164,7 +164,7 @@ public class MyCalendarTest
     public void getMeetingsForFullWeekOf()
     {
         final FullWeek week = this.calendar.getMeetingsForFullWeekOf(LocalDate.of(2017, 7, 6));
-        Assert.assertEquals(6, week.getNumberOfMeetings());
+        Assert.assertEquals(12, week.getNumberOfMeetings());
         System.out.println(week);
     }
 
@@ -172,7 +172,7 @@ public class MyCalendarTest
     public void getMeetingsForMonthOf()
     {
         FullMonth month = this.calendar.getMeetingsForYearMonth(2017, Month.JULY);
-        Assert.assertEquals(6, month.getNumberOfMeetings());
+        Assert.assertEquals(12, month.getNumberOfMeetings());
         System.out.println(month);
     }
 
